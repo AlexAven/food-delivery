@@ -1,3 +1,23 @@
 .header {
+  display: flex;
+  justify-content: space-between;
+  padding: 50px 30px;
   background-color: $headerBackground;
+
+  &__basketBtn {
+    cursor: pointer;
+  }
+
+  &__logoutBtn {
+    background: none;
+    cursor: pointer;
+    border: 1px solid $bordersColor;
+    color: $alternativeFontColor;
+    width: 200px;
+  }
+
+  .wrapper {
+    display: flex;
+    gap: 30px;
+  }
 }
