@@ -1,3 +1,5 @@
+import AddButton from '../../assets/images/add-btn.svg?react';
+
 const Card = ({ photo, title, description, price }) => {
   return (
     <article className="card">
@@ -7,7 +9,7 @@ const Card = ({ photo, title, description, price }) => {
       <div className="wrapper">
         <p className="card__price">{price} ₽</p>
         <button className="card__addToCart">
-          <img src="./src/assets/images/add-btn.png" alt="add-button" />
+          <AddButton />
         </button>
       </div>
     </article>

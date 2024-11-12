@@ -5,7 +5,7 @@ const Header = ({ title }) => {
       <div className="wrapper">
         <p className="header__basketCounter">Х товара на сумму Z </p>
         <a className="header__basketBtn">
-          <img src="./src/assets/images/cart.png" alt="cart-button" />
+          <img src="./src/assets/images/cart.svg" alt="cart-button" />
         </a>
         <button className="header__logoutBtn">Выйти</button>
       </div>

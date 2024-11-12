@@ -7,6 +7,10 @@
   border: 1px solid $bordersColor;
   box-sizing: border-box;
 
+  &:hover {
+    color: $alternativeFontColor;
+  }
+
   &__photo {
     width: 100%;
     height: auto;
@@ -31,6 +35,10 @@
     background: none;
     border: none;
     cursor: pointer;
+
+    &:hover * {
+      fill: $alternativeBackground;
+    }
   }
 
   .wrapper {

@@ -14,6 +14,11 @@
     border: 1px solid $bordersColor;
     color: $alternativeFontColor;
     width: 200px;
+
+    &:hover {
+      background-color: $alternativeBackground;
+      color: $mainFontColor;
+    }
   }
 
   .wrapper {
