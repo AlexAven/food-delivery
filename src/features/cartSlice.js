@@ -17,8 +17,8 @@ const cartSlice = createSlice({
       if (state.entities[itemId]) {
         state.entities[itemId].qty += 1;
       } else {
-        state.entities[itemId] = payload;
-        state.entities[itemId].qty = 1;
+        state.entities[itemId] = { ...payload, qty: 1 };
+        // state.entities[itemId].qty = 1;
         state.ids.push(itemId);
       }
 

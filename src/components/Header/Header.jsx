@@ -1,4 +1,8 @@
+import { useSelector } from 'react-redux';
+
 const Header = ({ title }) => {
+  const counting = useSelector((state) => state.cart);
+  console.log('counting', counting);
   return (
     <header className="header">
       <h2 className="header__title">{title}</h2>

@@ -1,6 +1,13 @@
-import AddButton from '../../assets/images/add-btn.svg?react';
+import { useDispatch } from 'react-redux';
 
-const Card = ({ photo, title, description, price }) => {
+import AddButton from '../../assets/images/add-btn.svg?react';
+import { addToCart } from '../../features/cartSlice';
+
+const Card = (props) => {
+  const { photo, title, description, price } = props;
+  const dispatch = useDispatch();
+  const handleAddToCart = () => dispatch(addToCart(props));
+
   return (
     <article className="card">
       <img src={photo} alt="dish-photo" className="card__photo" />
@@ -9,7 +16,7 @@ const Card = ({ photo, title, description, price }) => {
       <div className="wrapper">
         <p className="card__price">{price} ₽</p>
         <button className="card__addToCart">
-          <AddButton />
+          <AddButton onClick={handleAddToCart} />
         </button>
       </div>
     </article>
