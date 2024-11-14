@@ -3,8 +3,25 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   entities: {},
   ids: [],
-  totalItems: undefined,
+  totalItems: 0,
   totalPrice: 0,
+};
+
+const calculateTotals = (state) => {
+  const totals = state.ids.reduce(
+    (acc, id) => {
+      const item = state.entities[id];
+
+      acc.totalItems += item.qty;
+      acc.totalPrice += item.qty * item.price;
+
+      return acc;
+    },
+    { totalItems: 0, totalPrice: 0 },
+  );
+
+  state.totalItems = totals.totalItems;
+  state.totalPrice = totals.totalPrice;
 };
 
 const cartSlice = createSlice({
@@ -18,15 +35,41 @@ const cartSlice = createSlice({
         state.entities[itemId].qty += 1;
       } else {
         state.entities[itemId] = { ...payload, qty: 1 };
-        // state.entities[itemId].qty = 1;
         state.ids.push(itemId);
       }
+      calculateTotals(state);
+    },
 
-      state.totalItems += 1;
-      state.totalPrice += payload.price * payload.qty; // считает направильно - переделать
+    incrementItem: (state, { payload }) => {
+      const itemId = payload.id;
+
+      state.entities[itemId].qty += 1;
+      calculateTotals(state);
+    },
+
+    decrementItem: (state, { payload }) => {
+      console.log('DECREMENT', payload);
+      const itemId = payload.id;
+
+      if (state.entities[itemId].qty - 1 === 0) {
+        console.log('boom!');
+        delete state.entities[itemId];
+        state.ids = state.ids.filter((item) => item !== itemId);
+      } else {
+        state.entities[itemId].qty -= 1;
+      }
+      calculateTotals(state);
+    },
+
+    removeItem: (state, { payload }) => {
+      const itemId = payload.id;
+
+      delete state.entities[itemId];
+      state.ids = state.ids.filter((item) => item.id !== itemId);
+      calculateTotals(state);
     },
   },
 });
 
 export default cartSlice.reducer;
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, incrementItem, decrementItem, removeItem } = cartSlice.actions;
