@@ -6,7 +6,6 @@ const initialState = {
   totalItems: 0,
   totalPrice: 0,
 };
-
 const calculateTotals = (state) => {
   const totals = state.ids.reduce(
     (acc, id) => {
@@ -30,7 +29,6 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (state, { payload }) => {
       const itemId = payload.id;
-
       if (state.entities[itemId]) {
         state.entities[itemId].qty += 1;
       } else {
@@ -42,17 +40,13 @@ const cartSlice = createSlice({
 
     incrementItem: (state, { payload }) => {
       const itemId = payload.id;
-
       state.entities[itemId].qty += 1;
       calculateTotals(state);
     },
 
     decrementItem: (state, { payload }) => {
-      console.log('DECREMENT', payload);
       const itemId = payload.id;
-
       if (state.entities[itemId].qty - 1 === 0) {
-        console.log('boom!');
         delete state.entities[itemId];
         state.ids = state.ids.filter((item) => item !== itemId);
       } else {
@@ -63,9 +57,8 @@ const cartSlice = createSlice({
 
     removeItem: (state, { payload }) => {
       const itemId = payload.id;
-
       delete state.entities[itemId];
-      state.ids = state.ids.filter((item) => item.id !== itemId);
+      state.ids = state.ids.filter((item) => item !== itemId);
       calculateTotals(state);
     },
   },
