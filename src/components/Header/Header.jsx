@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import styles from './Header.module.scss';
@@ -17,9 +18,9 @@ const Header = (props) => {
   return (
     <header className={styles.header}>
       {nav && (
-        <a>
+        <Link to="/cart">
           <img src="./src/assets/images/nav-back.png" alt="cart-button" />
-        </a>
+        </Link>
       )}
       {title && <h2 className={styles.title}>{title}</h2>}
       <div className={styles.wrapper}>

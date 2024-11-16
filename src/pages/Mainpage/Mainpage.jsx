@@ -1,6 +1,10 @@
+import { useDispatch } from 'react-redux';
+
 import styles from './Mainpage.module.scss';
 import Header from '../../components/Header/Header.jsx';
 import Card from '../../components/Card/Card.jsx';
+// import ButtonCircle from '../../components/ButtonCircle/ButtonCircle.jsx';
+import { addToCart } from '../../features/cartSlice';
 
 // data вместо стейта
 const data = {
@@ -51,21 +55,38 @@ const data = {
   ids: [1, 2, 3, 4, 5, 6],
 };
 
-const Main = () => (
-  <>
-    <Header title={'НАША ПРОДУКЦИЯ'} cart={true} nav={false} counter={true} />
-    <main className={styles.main}>
-      <div className={styles.wrapper}>
-        {data.ids.map((element) => {
-          const { id, title, description, price, photo } = data.entity[element];
+const Main = () => {
+  const dispatch = useDispatch();
+  // const handleDecrease = () => dispatch(decrementItem(props)); // временно
+  // const handleIncrease = () => dispatch(incrementItem(props)); // временно
+  // const handleRemove = () => dispatch(removeItem(props)); // временно
+  // const handleAddToCart = () => dispatch(addToCart(props));
 
-          return (
-            <Card key={id} id={id} title={title} description={description} price={price} photo={photo} />
-          );
-        })}
-      </div>
-    </main>
-  </>
-);
-
+  return (
+    <>
+      <Header title={'НАША ПРОДУКЦИЯ'} cart={true} counter={true} />
+      <main className={styles.main}>
+        <div className="container">
+          <div className={styles.wrapper}>
+            {data.ids.map((item) => {
+              const { id, title, description, price, photo } = data.entity[item];
+              const handleAddToCart = () => dispatch(addToCart(data.entity[item]));
+              return (
+                <Card
+                  key={id}
+                  id={id}
+                  title={title}
+                  description={description}
+                  price={price}
+                  photo={photo}
+                  clickBtn={handleAddToCart}
+                />
+              );
+            })}
+          </div>
+        </div>
+      </main>
+    </>
+  );
+};
 export default Main;

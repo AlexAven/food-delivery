@@ -1,18 +1,14 @@
 @import '../../styles/index.scss';
 
 .main {
-  min-height: 100vh;
+  height: calc(100vh - 168px);
   padding: 30px;
   background-color: $mainBackground;
-  // margin-top: 133px;
-  // height: calc(100% - 133px);
-  // overflow-y: auto;
-
+  overflow: auto;
 
   .wrapper {
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 14px;
   }
 } 

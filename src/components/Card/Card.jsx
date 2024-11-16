@@ -1,38 +1,35 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import AddButton from '../../assets/images/add-btn.svg?react';
-import styles from './Card.module.scss';
-import { addToCart, incrementItem, decrementItem, removeItem } from '../../features/cartSlice';
+import ButtonCircle from '../ButtonCircle/ButtonCircle';
+import { Container, Photo, Title, Description, Price, Wrapper } from './Card.styled';
+import { incrementItem, decrementItem } from '../../features/cartSlice';
 
 const Card = (props) => {
-  const { photo, id, title, description, price } = props;
+  const { photo, id, title, description, price, clickBtn, counter = false, direction } = props;
   const { entities } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-  const handleDecrease = () => dispatch(decrementItem(props)); // временно
-  const handleIncrease = () => dispatch(incrementItem(props)); // временно
-  const handleRemove = () => dispatch(removeItem(props)); // временно
-  const handleAddToCart = () => dispatch(addToCart(props));
+  const handleDecrease = () => dispatch(decrementItem(props));
+  const handleIncrease = () => dispatch(incrementItem(props));
+  // const handleRemove = () => dispatch(removeItem(props)); // временно
+  // const handleAddToCart = () => dispatch(addToCart(props));
 
   return (
-    <article className={styles.card}>
-      <img src={photo} alt="dish-photo" className={styles.card__photo} />
-      <h3 className={styles.card__title}>{title}</h3>
-      <p className={styles.card__description}>{description}</p>
-      <div className={styles.wrapper}>
-        <p className={styles.card__price}>{price.toLocaleString('ru-RU')} ₽</p>
-        {entities[id] && (
+    <Container direction={direction}>
+      <Photo src={photo} alt="dish-photo" />
+      <Title>{title}</Title>
+      <Description>{description}</Description>
+      <Wrapper>
+        <Price>{price.toLocaleString('ru-RU')} ₽</Price>
+        {entities[id] && counter && (
           <>
-            <button onClick={handleDecrease}>-</button>
+            <ButtonCircle type={'minus'} onClick={handleDecrease} />
             {entities[id].qty}
-            <button onClick={handleIncrease}>+</button>
-            <button onClick={handleRemove}>X</button>
+            <ButtonCircle onClick={handleIncrease} />
           </>
         )}
-        <button className={styles.card__addToCart}>
-          <AddButton onClick={handleAddToCart} />
-        </button>
-      </div>
-    </article>
+        <ButtonCircle click={clickBtn} />
+      </Wrapper>
+    </Container>
   );
 };
 
