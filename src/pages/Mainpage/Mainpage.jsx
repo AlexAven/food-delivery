@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import styles from './Mainpage.module.scss';
 import Header from '../../components/Header/Header.jsx';
 import Card from '../../components/Card/Card.jsx';
-// import ButtonCircle from '../../components/ButtonCircle/ButtonCircle.jsx';
 import { addToCart } from '../../features/cartSlice';
 
 // data вместо стейта
@@ -57,10 +56,6 @@ const data = {
 
 const Main = () => {
   const dispatch = useDispatch();
-  // const handleDecrease = () => dispatch(decrementItem(props)); // временно
-  // const handleIncrease = () => dispatch(incrementItem(props)); // временно
-  // const handleRemove = () => dispatch(removeItem(props)); // временно
-  // const handleAddToCart = () => dispatch(addToCart(props));
 
   return (
     <>

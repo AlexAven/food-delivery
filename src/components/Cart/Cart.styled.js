@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 const Purchases = styled.div`
+  margin: 0 auto;
   max-width: 850px;
   display: flex;
-`;
-const Total = styled.div`
-  height: 90px;
-  border-top: 1px solid #d58c51;
+  flex-direction: column;
+  overflow: auto;
+  gap: 40px;
 `;
 
-export { Purchases, Total };
+export { Purchases };

@@ -1,11 +1,24 @@
 import styled from 'styled-components';
 
 const Container = styled.article`
-  flex: 0 1 312px;
   display: flex;
   flex-direction: ${({ direction }) => direction || 'column'};
-  padding: 40px 20px 20px;
-  border: 1px solid #d58c51;
+  justify-content: space-between;
+  ${({ direction }) => {
+    if (direction === 'row') {
+      return `
+      border: none;
+      gap: 30px;
+      align-items: center
+      `;
+    } else {
+      return `
+      flex: 0 1 312px;
+      border: 1px solid #d58c51;
+      padding: 40px 20px 20px;
+      `;
+    }
+  }};
   box-sizing: border-box;
 
   &:hover {
@@ -14,14 +27,25 @@ const Container = styled.article`
 `;
 
 const Photo = styled.img`
-  width: 100%;
-  height: auto;
+  ${({ direction }) => {
+    if (direction === 'row') {
+      return `
+        height: 122px;
+        `;
+    } else {
+      return `
+        height: auto;
+        padding-bottom: 20px;
+      `;
+    }
+  }};
+  width: auto;
 `;
 
 const Title = styled.h3`
-  padding-top: 20px;
   font-size: 17px;
   font-weight: 500;
+  align-content: center;
 `;
 
 const Description = styled.p`
@@ -37,6 +61,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
 `;
 
 export { Container, Photo, Title, Description, Price, Wrapper };

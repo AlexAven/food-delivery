@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import styles from './Header.module.scss';
+import ButtonCircle from '../ButtonCircle/ButtonCircle';
 
 const Header = (props) => {
   const { title, cart, nav, counter } = props;
@@ -18,8 +19,8 @@ const Header = (props) => {
   return (
     <header className={styles.header}>
       {nav && (
-        <Link to="/cart">
-          <img src="./src/assets/images/nav-back.png" alt="cart-button" />
+        <Link to="/">
+          <ButtonCircle type={'arrowLeft'} />
         </Link>
       )}
       {title && <h2 className={styles.title}>{title}</h2>}
@@ -32,9 +33,9 @@ const Header = (props) => {
           </p>
         )}
         {cart && (
-          <a className={styles.header__basketBtn}>
+          <Link to="/cart" className={styles.header__basketBtn}>
             <img src="./src/assets/images/cart.svg" alt="cart-button" />
-          </a>
+          </Link>
         )}
         <button className={styles.header__logoutBtn}>Выйти</button>
       </div>

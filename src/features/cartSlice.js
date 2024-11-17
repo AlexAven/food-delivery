@@ -5,6 +5,7 @@ const initialState = {
   ids: [],
   totalItems: 0,
   totalPrice: 0,
+  totalItemPrice: {},
 };
 const calculateTotals = (state) => {
   const totals = state.ids.reduce(
@@ -13,14 +14,16 @@ const calculateTotals = (state) => {
 
       acc.totalItems += item.qty;
       acc.totalPrice += item.qty * item.price;
+      acc.totalItemPrice = { ...acc.totalItemPrice, [item.id]: item.qty * item.price };
 
       return acc;
     },
-    { totalItems: 0, totalPrice: 0 },
+    { totalItems: 0, totalPrice: 0, totalItemPrice: {} },
   );
 
   state.totalItems = totals.totalItems;
   state.totalPrice = totals.totalPrice;
+  state.totalItemPrice = totals.totalItemPrice;
 };
 
 const cartSlice = createSlice({
