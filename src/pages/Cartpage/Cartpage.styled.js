@@ -37,17 +37,4 @@ const Value = styled.div`
   color: #d58c51;
 `;
 
-const BuyBtn = styled.button`
-  background: none;
-  cursor: pointer;
-  border: 1px solid $bordersColor;
-  color: $alternativeFontColor;
-  width: 200px;
-
-  &:hover {
-    background-color: $alternativeBackground;
-    color: $mainFontColor;
-  }
-`;
-
-export { Wrapper, Container, Footer, Total, Value, BuyBtn };
+export { Wrapper, Container, Footer, Total, Value };

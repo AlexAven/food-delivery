@@ -3,9 +3,10 @@ import { useSelector } from 'react-redux';
 
 import styles from './Header.module.scss';
 import ButtonCircle from '../ButtonCircle/ButtonCircle';
+import ButtonSquare from '../ButtonSquare/ButtonSquare';
 
 const Header = (props) => {
-  const { title, cart, nav, counter } = props;
+  const { children, cart, nav, counter } = props;
   const { totalPrice, totalItems } = useSelector((state) => state.cart);
   console.log(useSelector((state) => state.cart));
 
@@ -23,7 +24,7 @@ const Header = (props) => {
           <ButtonCircle type={'arrowLeft'} />
         </Link>
       )}
-      {title && <h2 className={styles.title}>{title}</h2>}
+      {children && <h2 className={styles.title}>{children}</h2>}
       <div className={styles.wrapper}>
         {counter && (
           <p className={styles.header__basketCounter}>
@@ -37,7 +38,7 @@ const Header = (props) => {
             <img src="./src/assets/images/cart.svg" alt="cart-button" />
           </Link>
         )}
-        <button className={styles.header__logoutBtn}>Выйти</button>
+        <ButtonSquare>Выйти</ButtonSquare>
       </div>
     </header>
   );

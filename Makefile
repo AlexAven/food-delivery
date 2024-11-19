@@ -1,5 +1,5 @@
 dev:
-	npx vite
+	npx concurrently "npm run server" "npx vite"
 
 install:
 	npm install

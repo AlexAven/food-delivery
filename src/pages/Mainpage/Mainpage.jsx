@@ -59,7 +59,9 @@ const Main = () => {
 
   return (
     <>
-      <Header title={'НАША ПРОДУКЦИЯ'} cart={true} counter={true} />
+      <Header cart={true} counter={true}>
+        НАША ПРОДУКЦИЯ
+      </Header>
       <main className={styles.main}>
         <div className="container">
           <div className={styles.wrapper}>
