@@ -45,7 +45,7 @@ const Photo = styled.img`
 const Title = styled.h3`
   font-size: 17px;
   font-weight: 500;
-  align-content: center;
+  flex-grow: 1;
 `;
 
 const Description = styled.p`

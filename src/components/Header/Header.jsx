@@ -8,7 +8,6 @@ import ButtonSquare from '../ButtonSquare/ButtonSquare';
 const Header = (props) => {
   const { children, cart, nav, counter } = props;
   const { totalPrice, totalItems } = useSelector((state) => state.cart);
-  console.log(useSelector((state) => state.cart));
 
   const pluraiser = (value) => {
     const cases = [2, 0, 1, 1, 1, 2];
@@ -19,26 +18,33 @@ const Header = (props) => {
 
   return (
     <header className={styles.header}>
-      {nav && (
-        <Link to="/">
-          <ButtonCircle type={'arrowLeft'} />
-        </Link>
-      )}
-      {children && <h2 className={styles.title}>{children}</h2>}
-      <div className={styles.wrapper}>
-        {counter && (
-          <p className={styles.header__basketCounter}>
-            {totalItems === 0
-              ? 'Нет товаров в корзине'
-              : `${pluraiser(totalItems)} на сумму ${totalPrice.toLocaleString('ru-RU')} руб.`}
-          </p>
-        )}
-        {cart && (
-          <Link to="/cart" className={styles.header__basketBtn}>
-            <img src="./src/assets/images/cart.svg" alt="cart-button" />
+      <div className={styles.header__main}>
+        {nav && (
+          <Link to="/">
+            <ButtonCircle type={'arrowLeft'} />
           </Link>
         )}
-        <ButtonSquare>Выйти</ButtonSquare>
+        {children && <h2 className={styles.title}>{children}</h2>}
+        <div className={styles.wrapper}>
+          {counter && (
+            <p className={styles.header__basketCounter}>
+              {totalItems === 0 ? (
+                'Нет товаров в корзине'
+              ) : (
+                <>
+                  <span>{pluraiser(totalItems)}</span>
+                  <span>на сумму {totalPrice.toLocaleString('ru-RU')} ₽</span>
+                </>
+              )}
+            </p>
+          )}
+          {cart && (
+            <Link to="/cart" className={styles.header__basketBtn}>
+              <img src="./src/assets/images/cart.svg" alt="cart-button" />
+            </Link>
+          )}
+          <ButtonSquare>Выйти</ButtonSquare>
+        </div>
       </div>
     </header>
   );

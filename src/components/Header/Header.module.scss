@@ -2,9 +2,18 @@
 
 .header {
   display: flex;
-  justify-content: space-around;
-  padding: 40px 40px;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
   background-color: $headerBackground;
+  height: 135px;
+  box-sizing: border-box;
+
+  &__main {
+    display: flex;
+    justify-content: space-between;
+    width: 78%;
+  }
 
 
   &__basketBtn {
@@ -22,6 +31,12 @@
       background-color: $alternativeBackground;
       color: $mainFontColor;
     }
+  }
+
+  &__basketCounter {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
   }
 
   .wrapper {
