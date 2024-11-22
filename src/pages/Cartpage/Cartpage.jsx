@@ -6,7 +6,9 @@ import Header from '../../components/Header/Header';
 import Cart from '../../components/Cart/Cart';
 
 const Cartpage = () => {
-  const { totalPrice } = useSelector((state) => state.cart);
+  const cart = useSelector((state) => state.cart);
+
+  localStorage.setItem('cart', JSON.stringify(cart)); // в useEffect?
 
   return (
     <Wrapper>
@@ -16,7 +18,7 @@ const Cartpage = () => {
       </Container>
       <Footer>
         <Total>
-          ЗАКАЗ НА СУММУ: <Value>{totalPrice.toLocaleString('ru-RU')} ₽</Value>
+          ЗАКАЗ НА СУММУ: <Value>{cart.totalPrice.toLocaleString('ru-RU')} ₽</Value>
         </Total>
         <ButtonSquare type={'background'}>Оформить заказ</ButtonSquare>
       </Footer>
