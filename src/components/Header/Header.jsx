@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import styles from './Header.module.scss';
@@ -8,6 +8,8 @@ import ButtonSquare from '../ButtonSquare/ButtonSquare';
 const Header = (props) => {
   const { children, cart, nav, counter } = props;
   const { totalPrice, totalItems } = useSelector((state) => state.cart);
+  const navigate = useNavigate();
+  const goBack = () => navigate(-1);
 
   const pluraiser = (value) => {
     const cases = [2, 0, 1, 1, 1, 2];
@@ -19,11 +21,7 @@ const Header = (props) => {
   return (
     <header className={styles.header}>
       <div className={styles.header__main}>
-        {nav && (
-          <Link to="/">
-            <ButtonCircle type={'arrowLeft'} />
-          </Link>
-        )}
+        {nav && <ButtonCircle type={'arrowLeft'} clickBtn={goBack} />}
         {children && <h2 className={styles.title}>{children}</h2>}
         <div className={styles.wrapper}>
           {counter && (
