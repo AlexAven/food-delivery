@@ -2,9 +2,7 @@ import styled from 'styled-components';
 
 const Section = styled.div``;
 
-const Photo = styled.img`
-
-`;
+const Photo = styled.img``;
 
 const Container = styled.div`
   display: flex;

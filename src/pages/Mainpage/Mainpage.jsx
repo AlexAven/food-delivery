@@ -10,13 +10,10 @@ import { getCatalog } from '../../features/catalogSlice.js';
 const Main = () => {
   const dispatch = useDispatch();
   const catalog = useSelector((state) => state.catalog);
-  const cart = useSelector((state) => state.cart);
-
-  localStorage.setItem('cart', JSON.stringify(cart)); // в useEffect?
 
   useEffect(() => {
     dispatch(getCatalog());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>

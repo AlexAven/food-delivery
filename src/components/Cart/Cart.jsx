@@ -1,19 +1,27 @@
 import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 
 import Card from '../Card/Card.jsx';
-import { removeItem } from '../../features/cartSlice';
+import { getCart, removeItem } from '../../features/cartSlice';
 import { Purchases } from './Cart.styled.js';
 
 const Cart = () => {
-  const { ids, entities } = useSelector((state) => state.cart);
+  const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const savedCart = localStorage.getItem('cart');
+    if (savedCart) {
+      dispatch(getCart(JSON.parse(savedCart)));
+    }
+  }, [dispatch]);
 
   return (
     <>
       <Purchases>
-        {ids.map((item) => {
-          const { id, title, price, photo } = entities[item];
-          const handleRemove = () => dispatch(removeItem(entities[item])); // временно
+        {cart.ids.map((item) => {
+          const { id, title, price, photo } = cart.entities[item];
+          const handleRemove = () => dispatch(removeItem(cart.entities[item]));
           return (
             <Card
               key={id}
