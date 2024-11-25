@@ -41,6 +41,7 @@ const cartSlice = createSlice({
 
     addToCart: (state, { payload }) => {
       const itemId = payload.id;
+      console.log('itemId', itemId);
       if (state.entities[itemId]) {
         state.entities[itemId].qty += 1;
       } else {

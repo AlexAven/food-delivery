@@ -28,6 +28,11 @@ const catalogSlice = createSlice({
         }
       });
     },
+    addCurrentItem: (state, { payload }) => {
+      const id = payload;
+      const currentItem = state.entities[id];
+      state.currentItem = currentItem;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -51,4 +56,4 @@ const catalogSlice = createSlice({
 });
 
 export default catalogSlice.reducer;
-export const { createCatalog } = catalogSlice.actions;
+export const { createCatalog, addCurrentItem } = catalogSlice.actions;

@@ -31,7 +31,7 @@ const Header = (props) => {
               ) : (
                 <>
                   <span>{pluraiser(totalItems)}</span>
-                  <span>на сумму {totalPrice.toLocaleString('ru-RU')} ₽</span>
+                  <span>на сумму {totalPrice?.toLocaleString('ru-RU')} ₽</span>
                 </>
               )}
             </p>

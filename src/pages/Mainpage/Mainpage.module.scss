@@ -1,14 +1,13 @@
 @import '../../styles/index.scss';
 
-.main {
-  height: calc(100vh - 168px);
-  padding: 30px;
-  background-color: $mainBackground;
-  overflow: auto;
-
-  .wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
+  .main {
+    height: calc(100vh - 168px);
+    padding: 30px;
+    overflow: auto;
+  
+    .wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
   }
-} 

@@ -7,11 +7,11 @@ const Button = styled.button`
       color: #ffffff;
 
       &:hover {
-        background-color: #161516;
+        background: none;
         color: #d58c51;
       }`;
     } else if (type === 'noBackground') {
-      return `background: #161516;
+      return `background: none;
       color: #d58c51;
       
       &:hover {

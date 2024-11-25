@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
+  background-color: #161516;
   display: flex;
   flex-direction: column;
   height: 100vh;
 `;
 
 const Container = styled.section`
-  background-color: #161516;
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -19,7 +19,6 @@ const Footer = styled.div`
   flex-shrink: 0;
   justify-content: space-around;
   align-items: center;
-  background-color: #161516;
   height: 90px;
   border-top: 1px solid #d58c51;
   padding: 10px 40px;

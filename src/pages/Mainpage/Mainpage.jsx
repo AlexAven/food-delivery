@@ -16,7 +16,7 @@ const Main = () => {
   }, [dispatch]);
 
   return (
-    <>
+    <div style={{ width: '100%', height: '100%', backgroundColor: '#161516' }}>
       <Header cart={true} counter={true}>
         НАША ПРОДУКЦИЯ
       </Header>
@@ -41,7 +41,7 @@ const Main = () => {
           </div>
         </div>
       </main>
-    </>
+    </div>
   );
 };
 export default Main;

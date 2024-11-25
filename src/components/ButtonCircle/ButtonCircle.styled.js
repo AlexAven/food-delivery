@@ -48,10 +48,9 @@ const Btn = styled.button`
         if (type === 'arrowLeft') {
           return 'transform: translate(-50%, -70%) rotate(30deg)';
         } else if (type !== 'minus') {
-          // Не применять если type === 'minus'
           return 'transform: translate(-50%, -50%) rotate(90deg)';
         } else {
-          return ''; // Убедитесь, что возвращается пустая строка для исключения стилей
+          return '';
         }
       }};
     }

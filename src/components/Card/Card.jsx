@@ -12,7 +12,7 @@ const Card = (props) => {
   const handleIncrease = () => dispatch(incrementItem(props));
 
   return (
-    <Container direction={direction}>
+    <Container to={`/${id}`} direction={direction}>
       <Photo direction={direction} src={photo} alt="dish-photo" />
       <Title>{title}</Title>
       {description && <Description>{description}</Description>}

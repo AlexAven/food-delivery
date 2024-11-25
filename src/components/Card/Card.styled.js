@@ -1,18 +1,21 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
-const Container = styled.article`
+const Container = styled(Link)`
   display: flex;
   flex-direction: ${({ direction }) => direction || 'column'};
   justify-content: space-between;
   ${({ direction }) => {
     if (direction === 'row') {
       return `
+      color: inherit;
       border: none;
       gap: 30px;
-      align-items: center
+      align-items: center;
       `;
     } else {
       return `
+      color: inherit;
       flex: 0 1 312px;
       border: 1px solid #d58c51;
       padding: 40px 20px 20px;
@@ -20,6 +23,7 @@ const Container = styled.article`
     }
   }};
   box-sizing: border-box;
+  text-decoration: none;
 
   &:hover {
     color: #d58c51;
