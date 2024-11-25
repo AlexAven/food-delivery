@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
+const storedMemory = localStorage.getItem('currentItem');
 const initialState = {
   entities: {},
   ids: [],
-  currentItem: null,
+  currentItem: storedMemory ? JSON.parse(storedMemory) : null,
   status: null,
 };
 
@@ -29,8 +30,7 @@ const catalogSlice = createSlice({
       });
     },
     addCurrentItem: (state, { payload }) => {
-      const id = payload;
-      const currentItem = state.entities[id];
+      const currentItem = state.entities[payload];
       state.currentItem = currentItem;
     },
   },
@@ -48,8 +48,8 @@ const catalogSlice = createSlice({
           if (!state.entities[itemId]) {
             state.entities[itemId] = item;
             state.ids.push(itemId);
-            state.error = null;
           }
+          state.status = null;
         });
       });
   },

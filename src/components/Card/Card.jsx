@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import ButtonCircle from '../ButtonCircle/ButtonCircle';
 import { Container, Photo, Title, Description, Price, Wrapper } from './Card.styled';
+import { addCurrentItem } from '../../features/catalogSlice';
 import { incrementItem, decrementItem } from '../../features/cartSlice';
 
 const Card = (props) => {
@@ -10,9 +11,10 @@ const Card = (props) => {
   const dispatch = useDispatch();
   const handleDecrease = () => dispatch(decrementItem(props));
   const handleIncrease = () => dispatch(incrementItem(props));
+  const setCurrentItem = () => dispatch(addCurrentItem(id));
 
   return (
-    <Container to={`/${id}`} direction={direction}>
+    <Container to={`/${id}`} onClick={setCurrentItem} direction={direction}>
       <Photo direction={direction} src={photo} alt="dish-photo" />
       <Title>{title}</Title>
       {description && <Description>{description}</Description>}

@@ -1,20 +1,25 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './Item.module.scss';
 import ButtonSquare from '../ButtonSquare/ButtonSquare';
+import { getCatalog } from '../../features/catalogSlice';
 import { addCurrentItem } from '../../features/catalogSlice';
 
 const Item = () => {
-  const { id } = useParams();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(addCurrentItem(id));
-  }, [dispatch, id]);
+    dispatch(getCatalog()).then(() => {
+      const savedCurrentItem = localStorage.getItem('currentItem');
+      if (savedCurrentItem) {
+        const { id } = JSON.parse(savedCurrentItem);
+        dispatch(addCurrentItem(id));
+      }
+    });
+  }, [dispatch]);
 
-  const { title, description, price, photo } = useSelector((state) => state.catalog.entities[id]) || {};
+  const { title, description, price, photo } = useSelector((state) => state.catalog.currentItem) || {};
 
   return (
     <article className={styles.item}>
