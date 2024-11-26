@@ -5,6 +5,7 @@ import styles from './Item.module.scss';
 import ButtonSquare from '../ButtonSquare/ButtonSquare';
 import { getCatalog } from '../../features/catalogSlice';
 import { addCurrentItem } from '../../features/catalogSlice';
+import { addToCart } from '../../features/cartSlice';
 
 const Item = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,8 @@ const Item = () => {
     });
   }, [dispatch]);
 
-  const { title, description, price, photo } = useSelector((state) => state.catalog.currentItem) || {};
+  const currentItem = useSelector((state) => state.catalog.currentItem) || {};
+  const { title, description, price, photo } = currentItem;
 
   return (
     <article className={styles.item}>
@@ -40,7 +42,11 @@ const Item = () => {
         </div>
         <div className={styles.wrapper}>
           <p className={styles.item__price}>{price?.toLocaleString('ru-RU')} ₽</p>
-          <ButtonSquare className={styles.item__button} type={'background'}>
+          <ButtonSquare
+            className={styles.item__button}
+            clickBtn={() => dispatch(addToCart(currentItem))}
+            type={'background'}
+          >
             В корзину
           </ButtonSquare>
         </div>
